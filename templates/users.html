@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='users.css')}}">
+    <script src="https://kit.fontawesome.com/71fde90bd7.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="navbar">
+        <a id="active" href="/"> Inicio </a>
+        <div class="dropdown">
+            <button class="dropbtn"> You
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/profile"> Você </a>
+                <a href="/profile/post/add"> Fale </a>
+                <a href="/profile/img/add"> Mostre </a>
+                <a href="/profile/edit"> Ajustes </a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"> Horizonte
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <div class="divider">
+                    <hr class="left"/>Amigos<hr class="right" />
+                </div>
+                <a href="/friends/post"> Pensamentos</a>
+                <a href="/friends/img"> Fotos</a>
+                <a href="/friends/find"> Amigos</a>
+                <div class="divider">
+                    <hr class="left"/>Todos<hr class="right" />
+                </div>
+                <a href="/all/post"> Pensamentos</a>
+                <a href="/all/img"> Fotos</a>
+            </div>
+        </div>
+        <a href="/about"> Sobre </a>
+        <div class="dropdown">
+            <button class="dropbtn"> Conta
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/check"> Entrar</a>
+                <a href="/logout"> Sair </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="users-container">
+            <h2 class="title"> Seus amigos:</h2>
+            <ul class="users-list">
+                {% for user in friends %}
+                <li>
+                    <div class="users-list-div">
+                        <img class="mini-pic" src="{{url_for('static', filename=user.picture )}}">
+                        <a class="nick" href="/profile/id={{ user.id }}"> {{ user.username.capitalize() }} </a>
+                        <button class="btn-unfollow" onclick="location.href='/profile/id={{ user.id }}/add'">
+                            <i class="fa-solid fa-user-xmark"></i> Abandonar </button>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="users-container">
+            <h2 class="title"> Pessoas para seguir:</h2>
+            <ul class="users-list">
+                {% for user in users %}
+                <li>
+                    <div class="users-list-div">
+                        <img class="mini-pic" src="{{url_for('static', filename=user.picture )}}">
+                        <a class="nick" href="/profile/id={{ user.id }}"> {{ user.username.capitalize() }} </a>
+                        <button class="btn-follow" onclick="location.href='/profile/id={{ user.id }}/add'">
+                            <i class="fa-solid fa-user-plus"></i> Seguir </button>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

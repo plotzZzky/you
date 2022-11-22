@@ -1,0 +1,245 @@
+.profile {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    height: 360px;
+    border: 10px solid #1B74DF;
+    margin-left: 9.5%;
+    margin-right: 9.5%;
+    top: 50px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-image: none;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.div-profile-picture {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 320px;
+    height: 360px;
+    background-color: white;
+    overflow: hidden;
+}
+
+.profile-picture {
+    width: 320px;
+    height: 300px;
+    margin: 0;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.nick {
+    text-align: center;
+    margin: auto;
+
+}
+
+.content-profile {
+    width: 80%;
+    height: auto;
+    min-height: 97%;
+    margin: auto;
+    margin-top: 22%;
+    padding: 8px;
+    background-color: white;
+    border: none;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.container-say {
+    width: 50%;
+    height: 28%;
+    margin: auto;
+    margin-top: 8%;
+    overflow: hidden;
+    border: 2px solid #1B74DF;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.say-title {
+    text-align: center;
+    color: grey;
+}
+
+.say {
+    width: 90%;
+    height: 40%;
+    margin: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+    border: 1px solid lightgrey;
+    font-size: 14px;
+    resize: none;
+}
+
+.submit-post {
+    width: 20%;
+    height: 32px;
+    margin: 2%;
+    margin-left: 40%;
+    margin-right: 40%;
+    background-color: #1B74DF;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    padding: 8px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.container-img {
+    width: 620px;
+    height: 88%;
+    margin: auto;
+    margin-top: 5%;
+    overflow: hidden;
+    border: 2px solid #1B74DF;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.img-post {
+    width: 600px;
+    height: 600px;
+    margin: 2%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.img-text {
+    width: 595px;
+    height: 64px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 1px solid lightgrey;
+    font-size: 14px;
+    resize: none;
+}
+
+.content-profile {
+    width: 80%;
+    height: auto;
+    min-height: 55vh;
+    margin: auto;
+    margin-top: 420px;
+    padding: 8px;
+    background-color: white;
+    border: none;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+.tabs {
+    position: relative;
+    height: auto;
+    top: 20px;
+    min-height: 90vh;
+    clear: both;
+    margin: 0;
+}
+
+.tab {
+    float: left;
+}
+
+.tab label {
+    font-size: 20px;
+    background: lightgrey;
+    padding: 8px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border: 1px solid #ccc;
+    margin-left: -1px;
+    position: relative;
+    left: 600px;
+}
+
+.tab [type=radio] {
+    display: none;
+    width: 200px;
+}
+
+.tab-content {
+    position: absolute;
+    top: 28px;
+    left: 0;
+    background: white;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    overflow: auto;
+}
+
+[type=radio]:checked ~ label {
+    background: white;
+    border-bottom: 1px solid white;
+    z-index: 2;
+}
+
+[type=radio]:checked ~ label ~ .tab-content {
+    z-index: 1;
+}
+
+.btn-follow {
+    position: absolute;
+    width: 160px;
+    height: 40px;
+    left: 21.5%;
+    bottom: 6px;
+    background-color: #1B74DF;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.btn-unfollow {
+    position: absolute;
+    width: 160px;
+    height: 40px;
+    left: 21.5%;
+    bottom: 6px;
+    background-color: grey;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.btn-follow i, .btn-unfollow i {
+    margin-right: 8px;
+}
+
+.status {
+    position: absolute;
+    width: auto;
+    height: auto;
+    min-width: 73%;
+    min-height: 40px;
+    left: 24%;
+    right: 3%;
+    top: 0;
+    bottom: auto;
+}
+
+.status {
+    font-size: 26px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0px 2px 4px #0005;
+    backdrop-filter: blur(40px);
+}

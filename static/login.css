@@ -1,0 +1,76 @@
+.login-content {
+    position: absolute;
+	width: 20%;
+	height: 60%;
+    margin-left: 30%;
+    margin-top: 2%;
+    top: 15%;
+    border-radius: 4px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 12px 0 rgba(0, 0, 0, 0.12);
+    background-color: #1B74DF;
+    overflow: hidden;
+}
+
+.login-tab {
+    margin: 1%;
+    display: none;
+    width: 98%;
+    height: 90.5%;
+    background-color: white;
+    overflow: hidden;
+}
+
+.tablinks {
+    position: relative;
+    width: 50%;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background-color: white;
+    color: grey;
+}
+
+.user-input {
+    width: 80%;
+    height: auto;
+    margin: 2%;
+    margin-right: 8%;
+    margin-left: 8%;
+    padding: 4px;
+    font-size: 16px;
+}
+
+.password-input {
+    width: 80%;
+    height: auto;
+    margin: 2%;
+    margin-rigth: 8%;
+    margin-left: 8%;
+    padding: 4px;
+    font-size: 16px;
+}
+
+.submit-input {
+    width: 40%;
+    height: auto;
+    margin: 10%;
+    margin-rigth: 30%;
+    margin-left: 30%;
+    padding: 8px;
+    font-size: 18px;
+    background-color:  #1B74DF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 5px 12px 0 rgba(0, 0, 0, 0.12);
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#tab-active {
+    background-color:  #1B74DF;
+    color: white;
+
+}
+
+.title {
+    color: grey;
+}

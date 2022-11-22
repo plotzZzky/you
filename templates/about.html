@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Sobre </title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+    <script src="https://kit.fontawesome.com/71fde90bd7.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="navbar">
+        <a id="active" href="/"> Inicio </a>
+        <div class="dropdown">
+            <button class="dropbtn"> You
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/profile"> Você </a>
+                <a href="/profile/post/add"> Fale </a>
+                <a href="/profile/img/add"> Mostre </a>
+                <a href="/profile/edit"> Ajustes </a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"> Horizonte
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <div class="divider">
+                    <hr class="left"/>Amigos<hr class="right" />
+                </div>
+                <a href="/friends/post"> Pensamentos</a>
+                <a href="/friends/img"> Fotos</a>
+                <a href="/friends/find"> Amigos</a>
+                <div class="divider">
+                    <hr class="left"/>Todos<hr class="right" />
+                </div>
+                <a href="/all/post"> Pensamentos</a>
+                <a href="/all/img"> Fotos</a>
+            </div>
+        </div>
+        <a href="/about"> Sobre </a>
+        <div class="dropdown">
+            <button class="dropbtn"> Conta
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/check"> Entrar</a>
+                <a href="/logout"> Sair </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1 class="title"> Sobre: </h1>
+        <h3 style="text-align: center;">Projeto de rede social feito por um estudante python usando Flask e PostgreSQL</h3>
+        <h2 class="title"> Login </h2>
+        <h3 style="text-align: center;"><a href="/login">/login</a> Pagina de login e cadastro ['GET', 'POST']</h3>
+        <h2 class="title"> Perfil </h2>
+        <h3 style="text-align: center;"><a href="/profile">/profile</a> Pagina com o perfil do usuario ['GET']</h3>
+        <h3 style="text-align: center;"><a href="/profile/post/add">/profile/post/add</a> Pagina para postar um novo "pensamento" ['GET', 'POST']</h3>
+        <h3 style="text-align: center;"><a href="/profile/img/add">/profile/img/add</a> Pagina para postar uma nova "image" ['GET', 'POST']</h3>
+        <h3 style="text-align: center;"><a href="/profile/edit">/profile/edit</a> Pagina para editar o  perfil ['GET', 'POST']</h3>
+        <h2 class="title"> Timeline(Horizonte) </h2>
+        <h3 style="text-align: center;"><a href="/friends/post">/friends/post</a> "Pensamentos" dos amigos ['GET']</h3>
+        <h3 style="text-align: center;"><a href="/friends/img">/friends/imgt</a> "Imagens" dos amigos ['GET']</h3>
+        <h3 style="text-align: center;"><a href="/friends/find">/friends/find</a> Pagina com lista de usuários como amigos ou não ['GET']</h3>
+        <h3 style="text-align: center;"><a href="/all/post">/all/post</a> "Pensamentos" de 'todos' ['GET']</h3>
+        <h3 style="text-align: center;"><a href="/all/img">/all/img</a> "Imagens" de 'todos' ['GET']</h3>
+    </div>
+
+</body>
+</html>

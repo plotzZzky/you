@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Login </title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='login.css')}}">
+    <script src="https://kit.fontawesome.com/71fde90bd7.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="navbar">
+        <a id="active" href="/"> Inicio </a>
+        <div class="dropdown">
+            <button class="dropbtn"> You
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/profile"> Você </a>
+                <a href="/profile/post/add"> Fale </a>
+                <a href="/profile/img/add"> Mostre </a>
+                <a href="/profile/edit"> Ajustes </a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"> Horizonte
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <div class="divider">
+                    <hr class="left"/>Amigos<hr class="right" />
+                </div>
+                <a href="/friends/post"> Pensamentos</a>
+                <a href="/friends/img"> Fotos</a>
+                <a href="/friends/find"> Amigos</a>
+                <div class="divider">
+                    <hr class="left"/>Todos<hr class="right" />
+                </div>
+                <a href="/all/post"> Pensamentos</a>
+                <a href="/all/img"> Fotos</a>
+            </div>
+        </div>
+        <a href="/about"> Sobre </a>
+        <div class="dropdown">
+            <button class="dropbtn"> Conta
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/check"> Entrar</a>
+                <a href="/logout"> Sair </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="login-content">
+            <div class="tabs">
+              <button id="tab-active" style="float: left;" class="tablinks" onclick="show_login(this)"> Entrar </button>
+              <button  class="tablinks" onclick="show_signup(this)"> Cadastrar </button>
+            </div>
+            <div style="display: block;" class="login-tab" id="Login">
+                <h1 class="title"> Entrar: </h1>
+                <form method="POST"  action="/login">
+                    <input class="user-input" type="text" name="username" placeholder="Usuario">
+                    <input class="password-input" type="password" name="password" placeholder="Senha">
+                    <input class="submit-input" type="submit" value="Entrar">
+                </form>
+            </div>
+            <div class="login-tab" id="Signup">
+                <h1 class="title"> Cadastrar: </h1>
+                <form method="POST" action="/signup">
+                    <input class="user-input" type="text" name="username" placeholder="Usuario">
+                    <input class="password-input" type="password" name="password" id="passsword" placeholder="Senha">
+                    <input class="password-input" type="password" name="password_b" id="passowrd_b" placeholder="Comfirme senha">
+                    <input class="user-input" type="email" name="email" placeholder="Email">
+                    <input class="submit-input" type="submit" value="Cadastrar">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function show_login(tab) {
+        var elements = document.getElementsByClassName('tablinks');
+        for (var i in elements) {
+            if (elements.hasOwnProperty(i)) {
+                elements[i].id = " ";
+        }
+    }
+
+        document.getElementById("Login").style.display = "block";
+        tab.id = "tab-active";
+        document.getElementById("Signup").style.display = "none";
+    }
+
+    function show_signup(tab) {
+        var elements = document.getElementsByClassName('tablinks');
+        for (var i in elements) {
+            if (elements.hasOwnProperty(i)) {
+                elements[i].id = " ";
+        }
+    }
+        document.getElementById("Login").style.display = "none";
+        tab.id = "tab-active";
+        document.getElementById("Signup").style.display = "block";
+    }
+
+    </script>
+
+</body>
+</html>

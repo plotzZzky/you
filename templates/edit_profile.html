@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='edit.css')}}">
+    <script src="https://kit.fontawesome.com/71fde90bd7.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="navbar">
+        <a id="active" href="/"> Inicio </a>
+        <div class="dropdown">
+            <button class="dropbtn"> You
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/profile"> Você </a>
+                <a href="/profile/post/add"> Fale </a>
+                <a href="/profile/img/add"> Mostre </a>
+                <a href="/profile/edit"> Ajustes </a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"> Horizonte
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <div class="divider">
+                    <hr class="left"/>Amigos<hr class="right" />
+                </div>
+                <a href="/friends/post"> Pensamentos</a>
+                <a href="/friends/img"> Fotos</a>
+                <a href="/friends/find"> Amigos</a>
+                <div class="divider">
+                    <hr class="left"/>Todos<hr class="right" />
+                </div>
+                <a href="/all/post"> Pensamentos</a>
+                <a href="/all/img"> Fotos</a>
+            </div>
+        </div>
+        <a href="/about"> Sobre </a>
+        <div class="dropdown">
+            <button class="dropbtn"> Conta
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/check"> Entrar</a>
+                <a href="/logout"> Sair </a>
+            </div>
+        </div>
+    </div>
+
+     <div class="content">
+         <div class="edit-profile-div">
+            <form method="POST" action="/profile/edit" enctype="multipart/form-data">
+                <div class="select-profile-picture">
+                    <img src="" class="img-selected" id="output"/>
+                    <input type="file" name="picture" id="selectedFile" style="display: none;"  accept="image/*" onchange="loadFile(event)"/>
+                    <input  class="find-picture" type="button" value="Procurar" onclick="document.getElementById('selectedFile').click();" />
+                    <input type="file" name="banner" id="banner" style="display: none;" accept="image/*"/>
+                    <input  class="find-picture" type="button" value="Procurar Banner" onclick="document.getElementById('banner').click();" />
+                 </div>
+                <input class="input-text" type="text" name="username" value="{{ user.username }}"><br>
+                <input class="input-text" type="text" name="status" value="{{ user.status }}"><br>
+                <input class="input-text" type="text" name="email" value="{{ user.email }}"><br>
+                <input class="input-pwd" type="password" name="password" placeholder="Sua nova senha"><br>
+                <input class="input-pwd" type="password" name="pwd" placeholder="Comfirme sua nova senha"><br>
+                <input class="submit" type="submit" value="Salvar alterações">
+                <script>
+                      var loadFile = function(event) {
+                        var output = document.getElementById('output');
+                        output.src = URL.createObjectURL(event.target.files[0]);
+                        output.onload = function() {
+                          URL.revokeObjectURL(output.src) // free memory
+                        }
+                      };
+                </script>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
