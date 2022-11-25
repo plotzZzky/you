@@ -5,6 +5,7 @@
     <title>Profile</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='edit.css')}}">
+    <script type=text/javascript src="{{url_for('static', filename='js/picture.js')}}"></script>
     <script src="https://kit.fontawesome.com/71fde90bd7.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -57,7 +58,7 @@
             <form method="POST" action="/profile/edit" enctype="multipart/form-data">
                 <div class="select-profile-picture">
                     <img src="" class="img-selected" id="output"/>
-                    <input type="file" name="picture" id="selectedFile" style="display: none;"  accept="image/*" onchange="loadFile(event)"/>
+                    <input type="file" name="picture" id="selectedFile" style="display: none;"  accept="image/*" onchange="setProfilePicture()"/>
                     <input  class="find-picture" type="button" value="Procurar" onclick="document.getElementById('selectedFile').click();" />
                     <input type="file" name="banner" id="banner" style="display: none;" accept="image/*"/>
                     <input  class="find-picture" type="button" value="Procurar Banner" onclick="document.getElementById('banner').click();" />

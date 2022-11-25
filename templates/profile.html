@@ -61,6 +61,7 @@
         <div class="status">
             <a> {{user.status}} </a>
         </div>
+
         {% if is_friend == False %}
             <button class="btn-follow" onclick="location.href='/profile/id={{ user.id }}/add'">
                 <i class="fa-solid fa-user-plus"></i> Seguir</button>
@@ -84,6 +85,7 @@
                         <div class="div-text">
                             <a class="post-link" href="/post/id={{ post.id }}"><pre class="post-text">{{ post.text }}</pre></a>
                         </div>
+
                         {% if post.liked == True %}
                             <a href="/post/id={{ post.id }}/add_like" class="like">
                             <i class="fa-solid fa-thumbs-up fa-xl like-icon"> </i> {{ post.likes|length }}</a>
@@ -91,6 +93,7 @@
                             <a style="background-color: lightgrey;" href="/post/id={{ post.id }}/add_like" class="like">
                             <i class="fa-solid fa-thumbs-up fa-xl like-icon"> </i> {{ post.likes|length }}</a>
                         {% endif %}
+
                         <div class="post-div-bottom">
                             <a class="date"> {{ post.date }}</a>
                             {% if current_user.id == post.user.id %}
@@ -102,6 +105,7 @@
                     {% endif %}
                 </div>
             </div>
+
             <div class="tab">
                 <input type="radio" id="tab-2" name="tab-group-1">
                 <label for="tab-2"> Galeria </label>
@@ -113,6 +117,7 @@
                             <a  class="mini-nick">{{ image.user.username }}</a>
                         </div>
                             <a href="/image/id={{ image.id }}"><img class="img-post" src="{{url_for('static', filename=image.img_path)}}"></a>
+
                         {% if image.liked == True %}
                             <a href="/image/id={{ image.id }}/add_like" class="like">
                             <i class="fa-solid fa-thumbs-up fa-xl like-icon"> </i> {{ image.likes|length }}</a>
@@ -120,6 +125,7 @@
                             <a style="background-color: lightgrey;" href="/image/id={{ image.id }}/add_like" class="like">
                             <i class="fa-solid fa-thumbs-up fa-xl like-icon"> </i> {{ image.likes|length }}</a>
                         {% endif %}
+
                         <div class="div-text">
                             <pre class="post-text">{{ image['text'] }}</pre>
                         </div>
@@ -132,6 +138,7 @@
                     {% endif %}
                 </div>
             </div>
+
         </div>
     </div>
 

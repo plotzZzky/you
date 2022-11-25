@@ -5,6 +5,7 @@
     <title> Login </title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='login.css')}}">
+    <script type=text/javascript src="{{url_for('static', filename='js/login.js')}}"></script>
     <script src="https://kit.fontawesome.com/71fde90bd7.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -58,54 +59,28 @@
               <button id="tab-active" style="float: left;" class="tablinks" onclick="show_login(this)"> Entrar </button>
               <button  class="tablinks" onclick="show_signup(this)"> Cadastrar </button>
             </div>
+
             <div style="display: block;" class="login-tab" id="Login">
                 <h1 class="title"> Entrar: </h1>
-                <form method="POST"  action="/login">
+                <form onsubmit="return validLogin(this)" method="POST" action="/login">
                     <input class="user-input" type="text" name="username" placeholder="Usuario">
                     <input class="password-input" type="password" name="password" placeholder="Senha">
                     <input class="submit-input" type="submit" value="Entrar">
                 </form>
             </div>
+
             <div class="login-tab" id="Signup">
                 <h1 class="title"> Cadastrar: </h1>
-                <form method="POST" action="/signup">
+                <form onsubmit="return validSignup(this)" method="POST" action="/signup">
                     <input class="user-input" type="text" name="username" placeholder="Usuario">
                     <input class="password-input" type="password" name="password" id="passsword" placeholder="Senha">
-                    <input class="password-input" type="password" name="password_b" id="passowrd_b" placeholder="Comfirme senha">
+                    <input class="password-input" type="password" name="pwd" id="passowrd_b" placeholder="Comfirme senha">
                     <input class="user-input" type="email" name="email" placeholder="Email">
-                    <input class="submit-input" type="submit" value="Cadastrar">
+                    <input class="submit-input" type="submit" value="Criar conta">
                 </form>
             </div>
+
         </div>
     </div>
-
-    <script>
-    function show_login(tab) {
-        var elements = document.getElementsByClassName('tablinks');
-        for (var i in elements) {
-            if (elements.hasOwnProperty(i)) {
-                elements[i].id = " ";
-        }
-    }
-
-        document.getElementById("Login").style.display = "block";
-        tab.id = "tab-active";
-        document.getElementById("Signup").style.display = "none";
-    }
-
-    function show_signup(tab) {
-        var elements = document.getElementsByClassName('tablinks');
-        for (var i in elements) {
-            if (elements.hasOwnProperty(i)) {
-                elements[i].id = " ";
-        }
-    }
-        document.getElementById("Login").style.display = "none";
-        tab.id = "tab-active";
-        document.getElementById("Signup").style.display = "block";
-    }
-
-    </script>
-
 </body>
 </html>

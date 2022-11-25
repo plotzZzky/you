@@ -60,6 +60,7 @@
                 <a  class="mini-nick" href="/profile/id={{ item.user.id }}">{{ item.user.username }}</a>
                     </div>
                     <a href="/image/id={{ item.id }}"><img class="img-post" src="{{url_for('static', filename=item.img_path)}}"></a>
+
                 {% if item.liked == True %}
                     <a href="/image/id={{ item.id }}/add_like" class="like">
                     <i class="fa-solid fa-thumbs-up fa-xl like-icon"> </i> {{ item.likes|length }}</a>
@@ -67,6 +68,7 @@
                     <a style="background-color: lightgrey;" href="/image/id={{ item.id }}/add_like" class="like">
                     <i class="fa-solid fa-thumbs-up fa-xl like-icon"> </i> {{ item.likes|length }}</a>
                 {% endif %}
+
                     <div class="div-text">
                         <pre class="post-text">{{ item['text'] }}</pre>
                     </div>
@@ -78,6 +80,7 @@
                     </div>
                 </div>
             {% endfor %}
+
             {% else %}
                 <h2 class="title"> Você ainda não segue ninguem!! </h2>
             {% endif %}

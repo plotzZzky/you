@@ -61,6 +61,7 @@
                 <div class="div-text">
                     <a class="post-link" href="/post/id={{ item.id }}"><pre class="post-text">{{ item.text }}</pre></a>
                 </div>
+
                 {% if item.liked == True %}
                     <a href="/post/id={{ item.id }}/add_like" class="like">
                     <i class="fa-solid fa-thumbs-up fa-xl like-icon"> </i> {{ item.likes|length }}</a>
@@ -68,6 +69,7 @@
                     <a style="background-color: lightgrey;" href="/post/id={{ item.id }}/add_like" class="like">
                     <i class="fa-solid fa-thumbs-up fa-xl like-icon"> </i> {{ item.likes|length }}</a>
                 {% endif %}
+
                 <div class="post-div-bottom">
                     <a class="date"> {{ item.date }}</a>
                     {% if user.id == item.user.id %}
@@ -76,6 +78,7 @@
                 </div>
             </div>
             {% endfor %}
+
             {% else %}
                 <h2 class="title"> Você ainda não segue ninguem!! </h2>
             {% endif %}

@@ -56,17 +56,8 @@
         <div class="container-img">
             <form method="POST" action="/profile/img/add" enctype="multipart/form-data">
                 <img  class="img-post" id="output" onclick="document.getElementById('selectedFile').click();"/>
-                <script>
-                      var loadFile = function(event) {
-                        var output = document.getElementById('output');
-                        output.src = URL.createObjectURL(event.target.files[0]);
-                        output.onload = function() {
-                          URL.revokeObjectURL(output.src) // free memory
-                        }
-                      };
-                </script>
                 <textarea class="img-text" name="text-image" placeholder="O que você esta pensando..."></textarea>
-                <input type="file" name="image" id="selectedFile" style="display: none;"  accept="image/*" onchange="loadFile(event)"/>
+                <input type="file" name="image" id="selectedFile" style="display: none;"  accept="image/*" onchange="setProfilePicture()"/>
                 <input class="submit-post" type="submit" value="Publicar">
             </form>
         </div>
