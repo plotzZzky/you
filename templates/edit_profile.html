@@ -69,15 +69,6 @@
                 <input class="input-pwd" type="password" name="password" placeholder="Sua nova senha"><br>
                 <input class="input-pwd" type="password" name="pwd" placeholder="Comfirme sua nova senha"><br>
                 <input class="submit" type="submit" value="Salvar alterações">
-                <script>
-                      var loadFile = function(event) {
-                        var output = document.getElementById('output');
-                        output.src = URL.createObjectURL(event.target.files[0]);
-                        output.onload = function() {
-                          URL.revokeObjectURL(output.src) // free memory
-                        }
-                      };
-                </script>
             </form>
         </div>
     </div>

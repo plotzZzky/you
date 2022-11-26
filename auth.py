@@ -52,7 +52,7 @@ def signup_user(request):
     f_name = request.form['username']
     f_email = request.form['email']
     pwd = request.form['password']
-    pwd_2 = request.form['password_b']
+    pwd_2 = request.form['pwd']
     username = create_username(f_name)
     email = create_email(f_email)
     passwd = create_password(pwd, pwd_2, 2)
