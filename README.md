@@ -15,6 +15,6 @@ Um projeto de rede social inspirada no instagram, feito por uma estudante python
 
 
 ## Importante:
-- O server roda atraves do main.py basta executa-lo para iniciar;
+- O server roda atraves do run.py basta executa-lo para iniciar;
 - É necessario um servidor PostgreSql configurado, ver app.py;
 </p>
