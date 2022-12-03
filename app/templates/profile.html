@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+    {% block content %}
+        {% block head %}
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='profile.css')}}">
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='posts.css')}}">
+        {% endblock %}
+
+        <div style="background-image: url('static{{ user.banner }}');" class="profile" >
+            <div class="div-profile-picture">
+                <img class="profile-picture" id="output" src="{{url_for('static', filename=user.picture )}}">
+                <h2 class="nick"> {{ user.username.capitalize() }}</h2>
+            </div>
+            <div class="status">
+                <a> {{user.status}} </a>
+            </div>
+
+            {% if is_friend == False %}
+                <button class="btn-follow" onclick="location.href='/profile/id={{ user.id }}/add'">
+                    <i class="fa-solid fa-user-plus"></i> Seguir</button>
+            {% elif is_friend == True %}
+                <button class="btn-unfollow" onclick="location.href='/profile/id={{ user.id }}/add'" >
+                    <i class="fa-solid fa-user-xmark"></i> Abandonar</button>
+            {% else %}
+            {% endif %}
+        </div>
+
+        <div class="content-profile">
+            {% for message in get_flashed_messages() %}
+                <div class="alert-error">{{ message }}</div>
+            {% endfor %}
+
+
+            <div class="tabs">
+                <div class="tab">
+                    <input type="radio" id="tab-1" name="tab-group-1" checked>
+                    <label for="tab-1"> Pensamentos </label>
+                    <div class="tab-content">
+                        {% if posts %}
+                        {% for post in posts %}
+                        <div class="card-post">
+                            <a  class="mini-nick">{{ post.user.username }}</a>
+                            <div class="div-text">
+                                <a class="post-link" href="/post/id={{ post.id }}"><pre class="post-text">{{ post.text }}</pre></a>
+                            </div>
+
+                            {% if post.liked == True %}
+                                <a href="/post/id={{ post.id }}/add_like" class="like">
+                                <i class="fa-solid fa-thumbs-up fa-xl like-icon"> </i> {{ post.likes|length }}</a>
+                            {% else %}
+                                <a style="background-color: lightgrey;" href="/post/id={{ post.id }}/add_like" class="like">
+                                <i class="fa-solid fa-thumbs-up fa-xl like-icon"> </i> {{ post.likes|length }}</a>
+                            {% endif %}
+
+                            <div class="post-div-bottom">
+                                <a class="date"> {{ post.date }}</a>
+                                {% if current_user.id == post.user.id %}
+                                    <a class="delete" href="/profile/post/delete={{ post.id }}"><i class="fa-solid fa-trash"></i></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="tab">
+                    <input type="radio" id="tab-2" name="tab-group-1">
+                    <label for="tab-2"> Galeria </label>
+                    <div class="tab-content">
+                        {% if images %}
+                        {% for image in images %}
+                        <div class="card-image">
+                            <div class="div-nick">
+                                <a  class="mini-nick">{{ image.user.username }}</a>
+                            </div>
+                                <a href="/image/id={{ image.id }}"><img class="img-post" src="{{url_for('static', filename=image.img_path)}}"></a>
+
+                            {% if image.liked == True %}
+                                <a href="/image/id={{ image.id }}/add_like" class="like">
+                                <i class="fa-solid fa-thumbs-up fa-xl like-icon"> </i> {{ image.likes|length }}</a>
+                            {% else %}
+                                <a style="background-color: lightgrey;" href="/image/id={{ image.id }}/add_like" class="like">
+                                <i class="fa-solid fa-thumbs-up fa-xl like-icon"> </i> {{ image.likes|length }}</a>
+                            {% endif %}
+
+                            <div class="div-text">
+                                <pre class="post-text">{{ image['text'] }}</pre>
+                            </div>
+                            <div class="post-div-bottom">
+                                <a class="date"> {{ image.date }}</a>
+                                <a class="delete" href="/profile/img/delete={{ image.id }}"><i class="fa-solid fa-trash"></i></a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    {% endblock %}

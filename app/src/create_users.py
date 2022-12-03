@@ -1,4 +1,6 @@
-from app import User, db, Post, CommentPost, LikePost
+from app.__init__ import db
+from app.models import User, Post, CommentPost, LikePost
+
 from werkzeug.security import generate_password_hash
 from datetime import datetime
 

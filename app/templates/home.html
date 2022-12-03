@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+    {% block content %}
+        {% block head %}
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+        {% endblock %}
+
+
+        <div class="content">
+
+            {% for message in get_flashed_messages() %}
+                <div class="alert-error">Error: {{ message }}</div>
+            {% endfor %}
+
+            <div style="text-align: center;">
+                <div class="div-brand">
+                    <a class="brand-name"> You!</a>
+                </div>
+
+                <h2> A rede social focada em você</h2>
+                 <h2> <i class="fa-solid fa-heart icon-brand"></i> Sua vida...
+                 <i class="fa-solid fa-earth-americas icon-brand"></i> Seu mundo...</h2>
+                <h2><i class="fa-solid fa-user icon-brand"></i> Sua You!!</h2>
+            </div>
+        </div>
+    {% endblock %}

@@ -1,10 +1,12 @@
-from app import app, db,  User, Post, Image, LikePost, LikeImage, Friends, CommentPost, CommentImage
+from app.__init__ import app, db
+from app.auth import signup_user, edit_profile
+from app.models import User, Post, Image, LikePost, LikeImage, Friends, CommentPost, CommentImage
+from app.src.posts import add_new_post, add_new_img, add_new_comment_image, add_new_comment_post, check_liked
+from app.src.create_users import create_users, create_post, create_comments, create_likes
+
 from flask import request, render_template, flash, redirect
 from flask_login import current_user, login_user, login_required, logout_user
 from werkzeug.security import check_password_hash
-from auth import signup_user, edit_profile
-from src.posts import add_new_post, add_new_img, add_new_comment_image, add_new_comment_post, check_liked
-from src.create_users import create_users, create_post, create_comments, create_likes
 
 
 # # # # # # # # # # # # # # # # Importante!!!! # # # # # # # # # # # # # # # #
@@ -32,7 +34,7 @@ def check_login():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
-        return render_template('login.html')
+        return render_template('login.html', title="Entrar")
     else:
         username = request.form['username']
         password = request.form['password']
@@ -53,10 +55,10 @@ def login():
 def signup():
     query = signup_user(request)
     if query:
-        return redirect('/profile')
+        return redirect('/notes')
     else:
-        flash('Error')
-        return redirect('/')
+        flash('Não foi possivel criar o usuario')
+        return redirect('/login')
 
 
 @app.route('/logout', methods=['GET'])
@@ -75,7 +77,7 @@ def show_perfil():
     check_liked(posts, current_user)
     images = db.session.query(Image).filter_by(user_id=current_user.id).order_by(Image.id.desc()).all()
     check_liked(images, current_user)
-    return render_template('profile.html', user=current_user, posts=posts, images=images)
+    return render_template('profile.html', user=current_user, posts=posts, images=images, title="Entrar")
 
 
 # Pagina com o perfil de outros usuarios
@@ -119,21 +121,22 @@ def add_friend(user_id):
 @login_required
 def edit_perfil():
     if request.method == 'GET':
-        return render_template('edit_profile.html', user=current_user)
+        return render_template('edit_profile.html', user=current_user, title="Profile")
     else:
         query = edit_profile(request, current_user)
-        if query:
+        if query is True:
+            flash('Alterações salvas')
             return redirect('/profile')
         else:
-            flash('As senhas precisam ser iguais')
-            return render_template('edit_profile.html', user=current_user)
+            flash(query)
+            return render_template('edit_profile.html', user=current_user, title="Profile")
 
 
 @app.route('/profile/img/add', methods=['GET', 'POST'])
 @login_required
 def add_img():
     if request.method == 'GET':
-        return render_template('add_img.html')
+        return render_template('add_img.html', title="Addiconar imagem")
     else:
         add_new_img(request, current_user)
         return redirect('/profile')
@@ -152,7 +155,7 @@ def delete_img(image_id):
 @login_required
 def add_said():
     if request.method == 'GET':
-        return render_template('add_post.html')
+        return render_template('add_post.html', title="Adicionar post")
     else:
         add_new_post(request, current_user)
         return redirect('/profile')
@@ -175,7 +178,7 @@ def delete_said(post_id):
 def view_image(image_id):
     image = db.session.execute(db.select(Image).filter_by(id=image_id)).one()
     check_liked(image, current_user)
-    return render_template('preview_image.html', user=current_user, data=image)
+    return render_template('preview_image.html', user=current_user, data=image, title="Imagem")
 
 
 @app.route('/image/id=<int:image_id>/add_comment', methods=['POST'])
@@ -215,7 +218,7 @@ def add_like_image(image_id):
 def view_post(post_id):
     post = db.session.execute(db.select(Post).filter_by(id=post_id)).one()
     check_liked(post, current_user)
-    return render_template('preview_post.html', user=current_user, data=post)
+    return render_template('preview_post.html', user=current_user, data=post, title="Post")
 
 
 @app.route('/post/id=<int:post_id>/add_comment', methods=['POST'])
@@ -258,7 +261,8 @@ def friends_posts():
         friends.append(friend.friend_id)
     data = db.session.query(Post).filter(Post.user_id.in_(friends)).all()
     check_liked(data, current_user)
-    return render_template('posts.html', user=current_user, data=data)
+    empty_text = "Você ainda não segue ninguem!"
+    return render_template('posts.html', user=current_user, data=data, title="Posts", empty_text=empty_text)
 
 
 @app.route('/friends/img', methods=['GET'])
@@ -269,7 +273,8 @@ def friends_images():
         friends.append(friend.friend_id)
     data = db.session.query(Image).filter(Image.user_id.in_(friends)).order_by(Image.id.desc()).all()
     check_liked(data, current_user)
-    return render_template('images.html', user=current_user, data=data)
+    empty_text = "Você ainda não segue ninguem!"
+    return render_template('images.html', user=current_user, data=data, title="Imagens", empty_text=empty_text)
 
 
 @app.route('/friends/find', methods=['GET'])
@@ -280,7 +285,7 @@ def find_friends():
         data.append(friend.friend_id)
     friends = db.session.query(User).filter(User.id.in_(data)).all()
     users = db.session.query(User).filter(User.id.notin_(data)).filter(User.id != current_user.id).all()
-    return render_template('users.html', users=users, friends=friends)
+    return render_template('users.html', users=users, friends=friends, title="Buscar amigos")
 
 
 @app.route('/all/post', methods=['GET'])
@@ -288,7 +293,8 @@ def find_friends():
 def all_posts():
     query = db.session.query(Post).order_by(Post.id.desc()).all()
     check_liked(query, current_user)
-    return render_template('posts.html', user=current_user, data=query)
+    empty_text = "Ainda não há nada por aqui!"
+    return render_template('posts.html', user=current_user, data=query, title="Posts", empty_text=empty_text)
 
 
 @app.route('/all/img', methods=['GET'])
@@ -296,21 +302,27 @@ def all_posts():
 def all_img():
     query = db.session.query(Image).order_by(Image.id.desc()).all()
     check_liked(query, current_user)
-    return render_template('images.html', user=current_user, data=query)
+    empty_text = "Ainda não há nada por aqui!"
+    return render_template('images.html', user=current_user, data=query, title="Imagens", empty_text=empty_text)
 
 
 # # # # # # # # # # # # # # # # Gerais # # # # # # # # # # # # # # # #
 
-@app.errorhandler(404)
-def not_found(e):
-    return redirect('/')
-
-
 @app.route('/', methods=['GET'])
-def home():
-    return render_template('home.html')
+def show_home():
+    return render_template('home.html', title="Inicio")
 
 
 @app.route('/about', methods=['GET'])
 def about():
-    return render_template('about.html')
+    return render_template('about.html', title="Sobre")
+
+
+@app.errorhandler(404)
+@app.errorhandler(405)
+def not_found(e):
+    flash('Pagina não encontrada! tente novamente mais tarde')
+    if request.referrer:
+        return redirect(request.referrer)
+    else:
+        return redirect('/')

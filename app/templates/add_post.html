@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+    {% block content %}
+        {% block head %}
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='profile.css')}}">
+        {% endblock %}
+
+
+        <div class="content">
+            <div class="container-say">
+                <h1 class="say-title"> Fale: </h1>
+                <form method="POST" action="/profile/post/add">
+                    <textarea  class="say" name="text" placeholder="O que você esta pensando..."></textarea>
+                    <input class="submit-post" type="submit" value="Publicar">
+                </form>
+            </div>
+        </div>
+    {% endblock %}

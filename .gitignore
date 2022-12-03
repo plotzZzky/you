@@ -1,0 +1,14 @@
+# ignore archive
+*.
+*.log*
+*.png
+*.jpg
+*.webp
+*.gif
+
+
+# ignore folder
+./
+.idea/*
+/__pycache__*
+

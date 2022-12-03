@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+
+{% extends "base.html" %}
+    {% block content %}
+        {% block head %}
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='users.css')}}">
+        {% endblock %}
+
+        <div class="content">
+            <div class="users-container">
+                <h2 class="title"> Seus amigos:</h2>
+                <ul class="users-list">
+                    {% for user in friends %}
+                    <li>
+                        <div class="users-list-div">
+                            <img class="mini-pic" src="{{url_for('static', filename=user.picture )}}">
+                            <a class="nick" href="/profile/id={{ user.id }}"> {{ user.username.capitalize() }} </a>
+                            <button class="btn-unfollow" onclick="location.href='/profile/id={{ user.id }}/add'">
+                                <i class="fa-solid fa-user-xmark"></i> Abandonar </button>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="users-container">
+                <h2 class="title"> Pessoas para seguir:</h2>
+                <ul class="users-list">
+                    {% for user in users %}
+                    <li>
+                        <div class="users-list-div">
+                            <img class="mini-pic" src="{{url_for('static', filename=user.picture )}}">
+                            <a class="nick" href="/profile/id={{ user.id }}"> {{ user.username.capitalize() }} </a>
+                            <button class="btn-follow" onclick="location.href='/profile/id={{ user.id }}/add'">
+                                <i class="fa-solid fa-user-plus"></i> Seguir </button>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endblock %}

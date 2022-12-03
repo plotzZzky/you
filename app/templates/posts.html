@@ -1,0 +1,39 @@
+{% extends "base.html" %}>
+    {% block content %}
+        {% block head %}
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='posts.css')}}">
+        {% endblock %}
+
+        <div class="content">
+            <div>
+                {% if data %}
+                {% for item in data %}
+                <div class="card-post">
+                    <a  class="mini-nick" href="/profile/id={{ item.user.id }}">{{ item.user.username }}</a>
+                    <div class="div-text">
+                        <a class="post-link" href="/post/id={{ item.id }}"><pre class="post-text">{{ item.text }}</pre></a>
+                    </div>
+
+                    {% if item.liked == True %}
+                        <a href="/post/id={{ item.id }}/add_like" class="like">
+                        <i class="fa-solid fa-thumbs-up fa-xl like-icon"> </i> {{ item.likes|length }}</a>
+                    {% else %}
+                        <a style="background-color: lightgrey;" href="/post/id={{ item.id }}/add_like" class="like">
+                        <i class="fa-solid fa-thumbs-up fa-xl like-icon"> </i> {{ item.likes|length }}</a>
+                    {% endif %}
+
+                    <div class="post-div-bottom">
+                        <a class="date"> {{ item.date }}</a>
+                        {% if user.id == item.user.id %}
+                            <a class="delete" href="/profile/post/delete={{ item.id }}"><i class="fa-solid fa-trash"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% else %}
+                    <h2 class="title"> {{ empty_text }} </h2>
+                {% endif %}
+            </div>
+        </div>
+    {% endblock %}

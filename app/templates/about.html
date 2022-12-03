@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+    {% block content %}
+
+        <div class="content">
+            <h1 class="title"> Sobre: </h1>
+            <h3 style="text-align: center;">Projeto de rede social feito por um estudante python usando Flask e PostgreSQL</h3>
+            <h2 class="title"> Login </h2>
+            <h3 style="text-align: center;"><a href="/login">/login</a> Pagina de login e cadastro ['GET', 'POST']</h3>
+            <h2 class="title"> Perfil </h2>
+            <h3 style="text-align: center;"><a href="/profile">/profile</a> Pagina com o perfil do usuario ['GET']</h3>
+            <h3 style="text-align: center;"><a href="/profile/post/add">/profile/post/add</a> Pagina para postar um novo "pensamento" ['GET', 'POST']</h3>
+            <h3 style="text-align: center;"><a href="/profile/img/add">/profile/img/add</a> Pagina para postar uma nova "image" ['GET', 'POST']</h3>
+            <h3 style="text-align: center;"><a href="/profile/edit">/profile/edit</a> Pagina para editar o  perfil ['GET', 'POST']</h3>
+            <h2 class="title"> Timeline(Horizonte) </h2>
+            <h3 style="text-align: center;"><a href="/friends/post">/friends/post</a> "Pensamentos" dos amigos ['GET']</h3>
+            <h3 style="text-align: center;"><a href="/friends/img">/friends/imgt</a> "Imagens" dos amigos ['GET']</h3>
+            <h3 style="text-align: center;"><a href="/friends/find">/friends/find</a> Pagina com lista de usuários como amigos ou não ['GET']</h3>
+            <h3 style="text-align: center;"><a href="/all/post">/all/post</a> "Pensamentos" de 'todos' ['GET']</h3>
+            <h3 style="text-align: center;"><a href="/all/img">/all/img</a> "Imagens" de 'todos' ['GET']</h3>
+        </div>
+    {% endblock %}

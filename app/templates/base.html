@@ -2,24 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> Nova Imagem </title>
+    <title>{{ title }}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='profile.css')}}">
     <script src="https://kit.fontawesome.com/71fde90bd7.js" crossorigin="anonymous"></script>
+    {% block head %}
+
+    {% endblock %}
 </head>
 <body>
 
-<div class="navbar">
+    <div class="navbar">
         <a id="active" href="/"> Inicio </a>
         <div class="dropdown">
             <button class="dropbtn"> You
               <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a href="/profile"> Você </a>
+                <a href="/profile"> Perfil </a>
                 <a href="/profile/post/add"> Fale </a>
                 <a href="/profile/img/add"> Mostre </a>
-                <a href="/profile/edit"> Ajustes </a>
+                <a href="/friends/find"> Amigos</a>
             </div>
         </div>
         <div class="dropdown">
@@ -32,7 +34,6 @@
                 </div>
                 <a href="/friends/post"> Pensamentos</a>
                 <a href="/friends/img"> Fotos</a>
-                <a href="/friends/find"> Amigos</a>
                 <div class="divider">
                     <hr class="left"/>Todos<hr class="right" />
                 </div>
@@ -47,21 +48,15 @@
             </button>
             <div class="dropdown-content">
                 <a href="/check"> Entrar</a>
+                <a href="/profile/edit"> Ajustes </a>
                 <a href="/logout"> Sair </a>
             </div>
         </div>
     </div>
 
-    <div class="content">
-        <div class="container-img">
-            <form method="POST" action="/profile/img/add" enctype="multipart/form-data">
-                <img  class="img-post" id="output" onclick="document.getElementById('selectedFile').click();"/>
-                <textarea class="img-text" name="text-image" placeholder="O que você esta pensando..."></textarea>
-                <input type="file" name="image" id="selectedFile" style="display: none;"  accept="image/*" onchange="setProfilePicture()"/>
-                <input class="submit-post" type="submit" value="Publicar">
-            </form>
-        </div>
-    </div>
+    {% block content %}
+
+    {% endblock %}
 
 </body>
 </html>

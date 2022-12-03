@@ -4,6 +4,7 @@
     margin: 25%;
     margin-top: 5%;
     border: 2px solid #1B74DF;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 4px;
     overflow: hidden;
 }

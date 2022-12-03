@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+    {% block content %}
+        {% block head %}
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='profile.css')}}">
+        {% endblock %}
+
+        <div class="content">
+            <div class="container-img">
+                <form method="POST" action="/profile/img/add" enctype="multipart/form-data">
+                    <img  class="img-post" id="output" onclick="document.getElementById('selectedFile').click();"/>
+                    <textarea class="img-text" name="text-image" placeholder="O que você esta pensando..."></textarea>
+                    <input type="file" name="image" id="selectedFile" style="display: none;"  accept="image/*" onchange="setProfilePicture()"/>
+                    <input class="submit-post" type="submit" value="Publicar">
+                </form>
+            </div>
+        </div>
+    {% endblock %}

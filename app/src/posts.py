@@ -1,6 +1,8 @@
-from datetime import datetime
-from app import db, Post, Image, app, CommentPost, CommentImage
+from app.__init__ import db, app
+from app.models import Post, Image, CommentPost, CommentImage
+
 from werkzeug.utils import secure_filename
+from datetime import datetime
 import os
 
 
